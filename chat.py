@@ -6,7 +6,7 @@ from PyQt5.QtGui import QColor, QTextCharFormat, QTextCursor, QFont, QTextBlockF
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
 
 class ChatWorker(QThread):
-    """DeepSeek API ile arka planda mesaj işleyen iş parçacığı"""
+    
     finished = pyqtSignal(str)
 
     def __init__(self, chat_history):
@@ -14,7 +14,7 @@ class ChatWorker(QThread):
         self.chat_history = chat_history
 
     def run(self):
-        """DeepSeek'e mesaj gönder ve cevabı al"""
+        
         response = ollama.chat(model="deepseek-r1", messages=self.chat_history)
         bot_response = response['message']['content']
         self.finished.emit(bot_response)
@@ -31,7 +31,7 @@ class ChatApp(QWidget):
             padding: 10px;
         """)
 
-        # Chat ekranı
+        
         self.chatbox = QTextEdit()
         self.chatbox.setReadOnly(True)
         self.chatbox.setStyleSheet("""
@@ -44,7 +44,7 @@ class ChatApp(QWidget):
         """)
         self.layout.addWidget(self.chatbox)
 
-        # Kullanıcı giriş alanı
+       
         self.inputbox = QTextEdit()
         self.inputbox.setStyleSheet("""
             background-color: #505050;
@@ -57,7 +57,7 @@ class ChatApp(QWidget):
         self.inputbox.installEventFilter(self)
         self.layout.addWidget(self.inputbox)
 
-        # Gönder butonu
+        
         self.send_button = QPushButton("➤ Send")
         self.send_button.setStyleSheet("""
             background-color: #0078D7;
@@ -72,7 +72,7 @@ class ChatApp(QWidget):
 
         self.setLayout(self.layout)
 
-        # Hafıza yönetimi
+        
         self.chat_history = self.load_chat_history()
         self.user_name = self.load_user_name()
         self.think_button = None
