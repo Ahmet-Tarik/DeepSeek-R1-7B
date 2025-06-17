@@ -15,8 +15,6 @@ This is a custom Python-based desktop chat interface for the DeepSeek R1-7B mode
 - Ollama (for DeepSeek model inference)
 - JSON for chat memory
 
-## 🚀 Screenshots
-*(Add a screenshot of the app running)*
 
 ## 🗂️ How to Run:
 ```bash
